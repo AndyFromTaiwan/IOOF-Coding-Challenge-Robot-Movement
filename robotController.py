@@ -18,10 +18,10 @@ class Robot(object):
                 args = command.split()[1].split(',')
                 handler = self.handlers.get('PLACE')
                 handler(int(args[0]), int(args[1]), args[2])
-            else:
+            elif command != 'PLACE':
                 handler = self.handlers.get(command)
                 if handler is not None:
-                    handler()
+                    return handler()
         except Exception as e:
             print(e)
         
@@ -31,6 +31,7 @@ class Robot(object):
         if status is not None:
             message = f'{status[0]},{status[1]},{status[2]}'
             print(message)
+            self.message = message
         return message
 
 
@@ -58,8 +59,7 @@ if __name__ == '__main__':
             else:
                 break
     elif args.file is not None:
-        commands = open(args.file, 'r')
+        commands = open(args.file).read().splitlines()
         for command in commands:
-            command = command.rstrip()
             if(len(command)>0):
                 robot.execute(command)
