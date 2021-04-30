@@ -25,7 +25,7 @@ class RobotModel(object):
 
     def turnLeft(self):
         if self.isPlaced:
-            self.direction = (self.direction +3) %4
+            self.direction = (self.direction -1) %4
 
     def turnRight(self):
         if self.isPlaced:

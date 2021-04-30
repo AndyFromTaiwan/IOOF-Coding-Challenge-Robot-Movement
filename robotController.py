@@ -31,7 +31,6 @@ class Robot(object):
         if status is not None:
             message = f'{status[0]},{status[1]},{status[2]}'
             print(message)
-            self.message = message
         return message
 
 
